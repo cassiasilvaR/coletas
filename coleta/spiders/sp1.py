@@ -13,13 +13,13 @@ class Sp1Spider(scrapy.Spider):
 
     def parse(self, response):
         data = []
-        for a in response.css(".shelf-product"):
-            NAME_SELECTOR = ".name-product span ::text"
-            PRECO_SELECTOR = ".smallRating span ::text"
-            QTD_AVALIACOES = ".qtdReviews ::text"
+        for a in response.css(".mw-ui-icon-wikimedia-labFlask"):
+            NAME_SELECTOR = "background-image ::text"
+            #PRECO_SELECTOR = ".smallRating span ::text"
+            #QTD_AVALIACOES = ".qtdReviews ::text"
             nome = a.css(NAME_SELECTOR).getall()
-            rating = a.css(PRECO_SELECTOR).getall()
-            qtd = a.css(QTD_AVALIACOES).getall()
+            #rating = a.css(PRECO_SELECTOR).getall()
+            #qtd = a.css(QTD_AVALIACOES).getall()
             for n in range(0,len(nome)):                
-                data.append({'nome': nome[n], 'rating': rating[n], 'numberOfRatings:': qtd[n]})
+                data.append({'nome': nome[n]}),#, 'rating': rating[n]}),#, 'numberOfRatings:': qtd[n]})
         yield ColetaItem(meuitem=data)
